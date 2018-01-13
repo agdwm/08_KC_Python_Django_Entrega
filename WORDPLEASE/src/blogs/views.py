@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
+def hello_world(request):
+
+    name = request.GET.get("name")
+    if name is None:
+        return HttpResponse("Hello world!")
+    else:
+        return HttpResponse("Hello " + name)
