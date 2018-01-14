@@ -2,6 +2,15 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
+class TimeStampedModel(models.Model):
+
+    created_at = models.DateTimeField(auto_now_add=True)  # saves the date when the object is created
+    modified_at = models.DateTimeField(auto_now=True)  # saves the date when the object is updated
+
+    class Meta:
+        abstract = True
+
+
 class Category(models.Model):
 
     name = models.CharField(max_length=50)
@@ -13,32 +22,27 @@ class Category(models.Model):
         return self.name
 
 
-class Blog(models.Model):
+class Blog(TimeStampedModel):
 
     blog_title = models.CharField(max_length=50)
     description = models.TextField(blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    created_at = models.DateTimeField(auto_now_add=True)
-    modified_at = models.DateTimeField(auto_now=True)
-
     def __str__(self):
         return self.blog_title
 
 
-class Post(models.Model):
+class Post(TimeStampedModel):
 
     post_title = models.CharField(max_length=50)
-    headline = models.CharField(max_length=100)
+    intro = models.CharField(max_length=400)
     content = models.TextField()
-    media = models.URLField(blank=True, null=True)
+    video = models.URLField(blank=True, null=True)
+    image = models.URLField(blank=True, null=True)
     release_date = models.DateTimeField()
 
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
     category = models.ManyToManyField(Category)
-
-    created_at = models.DateTimeField(auto_now_add=True)  # saves the date when the object is created
-    modified_at = models.DateTimeField(auto_now=True)  # saves the date when the object is updated
 
     def __str__(self):
         return self.post_title

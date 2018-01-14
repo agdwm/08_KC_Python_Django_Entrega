@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Welcome to Wordplease!</h1>
+    {% include "posts_list.html" with posts=object_list %}
+{% endblock %}
