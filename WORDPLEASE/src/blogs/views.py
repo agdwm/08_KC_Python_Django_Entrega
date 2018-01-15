@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
-from django.views.generic import ListView
+from django.shortcuts import get_object_or_404
+from django.views.generic import ListView, DetailView
 
 from blogs.models import Post, Blog
 
@@ -16,7 +17,7 @@ class LatestPosts(ListView):
 class ListBlogs(ListView):
 
     model = Blog
-    template_name = "blogs.html"
+    template_name = "blogs_list.html"
     context_object_name = "blogs"
     queryset = Blog.objects.all()
 
@@ -24,9 +25,20 @@ class ListBlogs(ListView):
 class ListPosts(ListView):
 
     model = Post
-    template_name = "posts_list.html"
+    template_name = "blog_user.html"
     context_object_name = "posts"
 
     def get_queryset(self):
-        autor = self.kwargs.get('autor')
-        return Post.objects.filter(blog__user__username=autor).order_by("-release_date")
+        current_autor = self.kwargs.get('autor')
+        return Post.objects.filter(blog__user__username=current_autor).order_by("-release_date")
+    # Contemplar pag 404 get_list_or_404()
+
+class PostDetail(DetailView):
+
+    model = Post
+    template_name = "post_detail.html"
+
+    def get_object(self):
+        current_autor = self.kwargs.get('autor')
+        current_pk = self.kwargs.get("pk")
+        return get_object_or_404(Post, blog__user__username=current_autor, pk=current_pk)
