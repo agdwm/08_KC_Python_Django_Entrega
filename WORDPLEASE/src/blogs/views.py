@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, get_list_or_404
 from django.views.generic import ListView, DetailView
 
-from blogs.models import Post, Blog
+from blogs.models import Post, Blog, Category
 
 
 class LatestPosts(ListView):
@@ -31,7 +31,7 @@ class ListPosts(ListView):
     def get_queryset(self):
         current_autor = self.kwargs.get('autor')
         return Post.objects.filter(blog__user__username=current_autor).order_by("-release_date")
-    # Contemplar pag 404 get_list_or_404()
+
 
 class PostDetail(DetailView):
 

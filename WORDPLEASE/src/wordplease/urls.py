@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+
 from blogs.views import LatestPosts, ListBlogs, ListPosts, PostDetail
 
 urlpatterns = [
@@ -25,3 +26,4 @@ urlpatterns = [
     path('blogs/', ListBlogs.as_view(), name="list_blogs_page"),
     path('', LatestPosts.as_view(), name="home_page")
 ]
+
