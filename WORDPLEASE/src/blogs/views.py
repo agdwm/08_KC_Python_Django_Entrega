@@ -15,18 +15,17 @@ class LatestPosts(ListView):
         return Post.objects.all().order_by("-release_date")
 
 
-class ListBlogs(ListView):
+class BlogList(ListView):
 
     model = Blog
     template_name = "blogs_list.html"
     context_object_name = "blogs"
-    queryset = Blog.objects.all()
 
 
-class ListPosts(ListView):
+class PostListByAuthor(ListView):
 
     model = Post
-    template_name = "blog_user.html"
+    template_name = "blog_author.html"
     context_object_name = "posts"
 
     def get_queryset(self):

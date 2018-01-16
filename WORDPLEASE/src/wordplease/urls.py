@@ -17,13 +17,13 @@ from django.contrib import admin
 from django.urls import path
 
 
-from blogs.views import LatestPosts, ListBlogs, ListPosts, PostDetail
+from blogs.views import LatestPosts, BlogList, PostListByAuthor, PostDetail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blogs/<str:autor>/<int:pk>', PostDetail.as_view(), name="post_detail_page"),
-    path('blogs/<str:autor>/', ListPosts.as_view(), name="list_posts_page"),
-    path('blogs/', ListBlogs.as_view(), name="list_blogs_page"),
+    path('blogs/<str:autor>/', PostListByAuthor.as_view(), name="list_posts_page"),
+    path('blogs/', BlogList.as_view(), name="list_blogs_page"),
     path('', LatestPosts.as_view(), name="home_page")
 ]
 
