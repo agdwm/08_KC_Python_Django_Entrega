@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, get_list_or_404
+from django.views import View
 from django.views.generic import ListView, DetailView
 
 from blogs.models import Post, Blog, Category
@@ -11,7 +12,7 @@ class LatestPosts(ListView):
     template_name = "home.html"
 
     def get_queryset(self):
-        return Post.objects.all().order_by("-release_date")[:4]
+        return Post.objects.all().order_by("-release_date")
 
 
 class ListBlogs(ListView):
