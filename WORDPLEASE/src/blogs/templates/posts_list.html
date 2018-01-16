@@ -1,15 +1,19 @@
     {% load static %}
     {% for post in posts %}
-        <figure>
-            <h3>{{ post.post_title }}</h3>
-            {% if post.image %}
-                <img src="{{ post.image }}" alt="{{ post.post_title }}" title="{{ post.post_title }}" height="200">
-                <figcaption>{{ post.intro }}</figcaption>
-            {% elif post.video %}
-                <iframe width="560" height="345" src="{{ post.video }}" frameborder="1" allowfullscreen></iframe>
-            {% else %}
-                <img src="{% static 'images/img_default.png'%}" height='200'>
-                <figcaption>{{ post.intro }}</figcaption>
-            {% endif %}
-        </figure>
+        <div>
+            <a href="{% url 'post_detail_page' post.blog.user post.pk %}" title="">
+                <figure>
+                    <h3>{{ post.post_title }}</h3>
+                    {% if post.image %}
+                        <img src="{{ post.image }}" alt="{{ post.post_title }}" title="{{ post.post_title }}" height="200">
+                        <figcaption>{{ post.intro }}</figcaption>
+                    {% elif post.video %}
+                        <iframe width="560" height="345" src="{{ post.video }}" frameborder="1" allowfullscreen></iframe>
+                    {% else %}
+                        <img src="{% static 'images/img_default.png'%}" height='200'>
+                        <figcaption>{{ post.intro }}</figcaption>
+                    {% endif %}
+                </figure>
+            </a>
+        </div>
     {% endfor %}
