@@ -16,6 +16,7 @@
         <h4>{{ post.intro }}</h4>
         <p>{{ post.content }}</p>
         <p><strong>Fecha y hora de publicación:</strong> {{ post.release_date | date:"d/m/Y H:i"}}</p>
+
         {% if post.category.count > 0 %}
             <strong>Categorías:</strong>
             {% for cat in post.category.all %}

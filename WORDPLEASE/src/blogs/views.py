@@ -42,4 +42,5 @@ class PostDetail(DetailView):
     def get_object(self):
         current_autor = self.kwargs.get('autor')
         current_pk = self.kwargs.get("pk")
-        return get_object_or_404(Post, blog__user__username=current_autor, pk=current_pk)
+        possible_posts = Post.objects.filter(blog__user__username=current_autor, pk=current_pk).prefetch_related("category")
+        return get_object_or_404(possible_posts)
