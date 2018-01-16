@@ -1,9 +1,7 @@
-from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404, get_list_or_404
-from django.views import View
+from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 
-from blogs.models import Post, Blog, Category
+from blogs.models import Post, Blog
 
 
 class LatestPosts(ListView):
