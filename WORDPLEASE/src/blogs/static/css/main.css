@@ -1,6 +1,50 @@
 body {
     font-size: 14px;
 }
+header{
+    border-bottom: 3px solid #e72030;
+    margin-bottom: 40px;
+}
+
+nav{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+nav a {
+    color: #ed363f;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 30px 15px 20px;
+    display: block;
+
+}
+
+nav a:hover {
+    color: #c3af94;
+    text-decoration: none;
+}
+
+row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+
+
+li{
+    display: inline-block;
+    background-color: #ededed;
+    padding: 5px 12px;
+    border-radius: 5px;
+}
 
 .truncated-text {
     //width: 250px;
@@ -9,40 +53,34 @@ body {
     text-overflow: ellipsis;
 }
 
-.list-of-posts {
+.post-list {
     margin-top: 50px;
 }
 
 .post-card {
     color: #ffffff;
+    margin-bottom: 25px;
 }
 
 .post-card_title {
     padding: 15px;
+    margin-bottom: 0;
+    background-color: #ebebeb;
 }
-.post-card_frame {
-    height: 300px;
-    overflow: hidden;
-    position: relative;
-    border: 2px solid black;
-}
-
-.post-card_frame img {
-    -webkit-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-}
-
 
 .post-card a {
     color: #333;
     text-decoration: none;
 }
 
-figure {
-    border: 2px solid gray;
+.post-detail_title {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.post-detail_intro{
+    margin-top: 30px;
+    margin-bottom: 10px;
 }
 
 figure img {
@@ -51,37 +89,24 @@ figure img {
 }
 
 figcaption {
-    padding: 15px;
+    padding: 10px 15px;
+    height: 120px;
+    overflow: hidden;
+    position: relative;
 }
 
+
 @media (min-width: 576px) {
-    body {
-        font-size: 14px;
-        background-color: red;
-    }
-    .post-card_frame {
-        height: 200px;
-    }
+
 }
 
 @media (min-width: 768px) {
-     body {
-        font-size: 14px;
-        background-color: blue;
-     }
-    .post-card_frame {
-        height: 200px;
-    }
+
 }
 
 @media (min-width: 992px) {
-     body {
-        font-size: 14px;
-        background-color: green;
-     }
-    .post-card_frame {
-        height: 200px;
-    }
+
+
 }
 
 @media (min-width: 1200px) { ... }

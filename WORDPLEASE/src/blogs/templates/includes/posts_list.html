@@ -1,8 +1,8 @@
 {% load static %}
-<section class="list-of-posts">
+<section class="post-list">
     <div class="row">
         {% for post in posts %}
-        <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="col-sm-6 col-lg-3">
             <div class="post-card">
                 <a href="{% url 'post_detail_page' post.blog.user post.pk %}" title="">
                     <figure>
@@ -21,7 +21,7 @@
                             <div class="post-card_frame">
                                 <img src="{% static 'images/img_default.png'%}">
                             </div>
-                            <figcaption>{{ post.intro }}</figcaption>
+                            <figcaption><p>{{ post.intro }}</p></figcaption>
                         {% endif %}
                     </figure>
                 </a>

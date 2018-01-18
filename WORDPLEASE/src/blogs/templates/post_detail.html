@@ -5,23 +5,29 @@
 {% block h1_title %} {{ post.blog.blog_title }} {% endblock %}
 
 {% block content %}
-    <h2>{{ post.post_title }}</h2>
+    <section class="post-detail">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="post-detail_title">{{ post.post_title }}</h2>
 
-    {% if post.image %}
-        <img src="{{ post.image }}" alt="{{ post.post_title }}" title="{{ post.post_title }}" height="400">
-    {% endif %}
-    <main>
-        <h4>{{ post.intro }}</h4>
-        <p>{{ post.content }}</p>
-        <p><strong>Fecha y hora de publicación:</strong> {{ post.release_date | date:"d/m/Y H:i"}}</p>
+                {% if post.image %}
+                    <img src="{{ post.image }}" alt="{{ post.post_title }}" title="{{ post.post_title }}" height="300">
+                {% endif %}
+                <main>
+                    <h6 class="post-detail_intro">{{ post.intro }}</h6>
+                    <p>{{ post.content }}</p>
+                    <p><strong>Fecha y hora de publicación:</strong> {{ post.release_date | date:"d/m/Y H:i"}}</p>
 
-        {% if post.category.count > 0 %}
-            <strong>Categorías:</strong>
-            {% for cat in post.category.all %}
-                <ul>
-                    <li>{{ cat.name }}</li>
-                </ul>
-            {% endfor %}
-        {% endif %}
-    </main>
+                    {% if post.category.count > 0 %}
+                        <p><strong>Categorías:</strong></p>
+                        <ul>
+                        {% for cat in post.category.all %}
+                            <li>{{ cat.name }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                </main>
+            </div>
+        </div>
+    </section>
 {% endblock %}
