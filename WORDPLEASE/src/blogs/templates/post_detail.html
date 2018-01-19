@@ -7,11 +7,13 @@
 {% block content %}
     <section class="post-detail">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-sm-12">
                 <h2 class="post-detail_title">{{ post.post_title }}</h2>
 
                 {% if post.image %}
-                    <img src="{{ post.image }}" alt="{{ post.post_title }}" title="{{ post.post_title }}" height="300">
+                    <div class="post-detail_frame">
+                        <img src="{{ post.image }}" alt="{{ post.post_title }}" title="{{ post.post_title }}">
+                    </div>
                 {% endif %}
                 <main>
                     <h6 class="post-detail_intro">{{ post.intro }}</h6>
@@ -19,12 +21,14 @@
                     <p><strong>Fecha y hora de publicación:</strong> {{ post.release_date | date:"d/m/Y H:i"}}</p>
 
                     {% if post.category.count > 0 %}
-                        <p><strong>Categorías:</strong></p>
-                        <ul>
-                        {% for cat in post.category.all %}
-                            <li>{{ cat.name }}</li>
-                        {% endfor %}
-                        </ul>
+                        <div class="post-detail_category">
+                            <p><strong>Categorías:</strong></p>
+                            <ul>
+                            {% for cat in post.category.all %}
+                                <li>{{ cat.name }}</li>
+                            {% endfor %}
+                            </ul>
+                        </div>
                     {% endif %}
                 </main>
             </div>

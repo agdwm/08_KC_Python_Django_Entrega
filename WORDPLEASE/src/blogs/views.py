@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView
 from blogs.models import Post, Blog
 
 
-class LatestPosts(ListView):
+class LatestPostsView(ListView):
 
     model = Post
     template_name = "home.html"
@@ -13,14 +13,14 @@ class LatestPosts(ListView):
         return Post.objects.all().order_by("-release_date")
 
 
-class BlogList(ListView):
+class BlogListView(ListView):
 
     model = Blog
     template_name = "blogs_list.html"
     context_object_name = "blogs"
 
 
-class PostListByAuthor(ListView):
+class PostListByAuthorView(ListView):
 
     model = Post
     template_name = "blog_author.html"
@@ -31,7 +31,7 @@ class PostListByAuthor(ListView):
         return Post.objects.filter(blog__user__username=current_autor).order_by("-release_date")
 
 
-class PostDetail(DetailView):
+class PostDetailView(DetailView):
 
     model = Post
     template_name = "post_detail.html"
