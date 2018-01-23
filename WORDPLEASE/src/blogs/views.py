@@ -48,6 +48,14 @@ class PostDetailView(DetailView):
         return get_object_or_404(possible_posts)
 
 
+"""class CreateBlogView(LoginRequiredMixin, View):
+
+    def get(self, request):
+        pass
+
+    def post(self, request):
+        pass"""
+
 
 class CreatePostView(LoginRequiredMixin, View):
 
@@ -57,12 +65,16 @@ class CreatePostView(LoginRequiredMixin, View):
 
 
     def post(self, request):
-        form = PostForm(request.POST)
+        post = Post()
+        current_user = post.user
+        post.user = request.user #Asignamos al post el usuario autenticado
+        post.blog = Blog.objects.get(user=current_user) # Asignamos el post al blog del usuario autenticado
+        form = PostForm(request.POST, instance=post)
 
         if form.is_valid():
             post = form.save()
             form = PostForm()
-            url = reverse("post_detail_page", args=[post.pk])
+            url = reverse("post_detail_page", args=[post.user, post.pk])
             message = "¡Post creado con éxito!"
             message += '<a href={0}>View</a>'.format(url)
             messages.success(request, message)

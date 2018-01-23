@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 
 
-from blogs.models import Post
+from blogs.models import Post, Blog
 
 
 class LoginForm(forms.Form):
@@ -19,11 +19,19 @@ class LoginForm(forms.Form):
         error_messages={'required': 'Este campo es obligatorio'}
     )
 
+""" class BlogForm(ModelForm):
+
+    class Meta:
+        model = Blog
+        fields = "__all__"
+        exclude = ["user"] """
+
 
 class PostForm(ModelForm):
 
     class Meta:
         model = Post
-        fields= "__all__"
+        fields = "__all__"
+        exclude = ["blog"]
 
         #release_date = forms.DateTimeField(widget=forms.SplitDateTimeWidget())
