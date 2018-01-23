@@ -1,5 +1,8 @@
-import self as self
 from django import forms
+from django.forms import ModelForm
+
+
+from blogs.models import Post
 
 
 class LoginForm(forms.Form):
@@ -15,3 +18,12 @@ class LoginForm(forms.Form):
         label="Password",
         error_messages={'required': 'Este campo es obligatorio'}
     )
+
+
+class PostForm(ModelForm):
+
+    class Meta:
+        model = Post
+        fields= "__all__"
+
+        #release_date = forms.DateTimeField(widget=forms.SplitDateTimeWidget())

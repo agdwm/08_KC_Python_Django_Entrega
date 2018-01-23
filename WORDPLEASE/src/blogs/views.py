@@ -1,7 +1,12 @@
-from django.shortcuts import get_object_or_404
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
+from django.views import View
 from django.views.generic import ListView, DetailView
 
 from blogs.models import Post, Blog
+from users.forms import PostForm
 
 
 class LatestPostsView(ListView):
@@ -41,3 +46,24 @@ class PostDetailView(DetailView):
         current_pk = self.kwargs.get("pk")
         possible_posts = Post.objects.filter(blog__user__username=current_autor, pk=current_pk).prefetch_related("category")
         return get_object_or_404(possible_posts)
+
+
+
+class CreatePostView(LoginRequiredMixin, View):
+
+    def get(self, request):
+        form = PostForm()
+        return render(request, "post_form.html", {'form': form})
+
+
+    def post(self, request):
+        form = PostForm(request.POST)
+
+        if form.is_valid():
+            post = form.save()
+            form = PostForm()
+            url = reverse("post_detail_page", args=[post.pk])
+            message = "¡Post creado con éxito!"
+            message += '<a href={0}>View</a>'.format(url)
+            messages.success(request, message)
+        return render(request, "post_form.html", {'form': form})

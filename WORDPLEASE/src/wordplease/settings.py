@@ -110,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Madrid'
 
 USE_I18N = True
 
@@ -127,7 +127,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "../userinterface/static")
 ]
 
-# Debug
+# Debug. Muestra las queries SQL en la consola
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -144,3 +144,6 @@ LOGGING = {
         },
     }
 }
+
+# Login URL
+LOGIN_URL = "/login"

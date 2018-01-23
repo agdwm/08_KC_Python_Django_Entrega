@@ -28,6 +28,9 @@
                                     <li><a href="{% url 'home_page' %}">Home</a></li>
                                     {% if user.is_authenticated %}
                                         <li>
+                                            <a href="{% url 'create_post_page' %}">New Post</a>
+                                        </li>
+                                        <li>
                                             <a href="{% url 'logout_page' %}">Logout</a>
                                         </li>
                                     {% else %}

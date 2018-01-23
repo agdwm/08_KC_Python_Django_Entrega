@@ -1,5 +1,7 @@
+import datetime
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 
 
 class TimeStampedModel(models.Model):
@@ -34,12 +36,13 @@ class Blog(TimeStampedModel):
 
 class Post(TimeStampedModel):
 
-    post_title = models.CharField(max_length=50)
+    post_title = models.CharField(max_length=150)
     intro = models.CharField(max_length=400)
     content = models.TextField()
     video = models.URLField(blank=True, null=True)
     image = models.URLField(blank=True, null=True)
     release_date = models.DateTimeField()
+    #release_date = models.SplitDateTimeField(initial=timezone.now)
 
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
     category = models.ManyToManyField(Category)

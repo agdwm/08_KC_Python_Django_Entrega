@@ -25,7 +25,7 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name="login_page"),
     path('logout/', LogoutView.as_view(), name="logout_page"),
 
-    path('new-post/, CreatePostView.as_view()', name="create_post_page"),
+    path('new-post/', CreatePostView.as_view(), name="create_post_page"),
 
     path('blogs/<str:autor>/<int:pk>', PostDetailView.as_view(), name="post_detail_page"),
     path('blogs/<str:autor>/', PostListByAuthorView.as_view(), name="list_posts_page"),
