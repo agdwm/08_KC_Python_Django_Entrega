@@ -26,6 +26,7 @@
                             <nav>
                                 <ul>
                                     <li><a href="{% url 'home_page' %}">Home</a></li>
+                                    <li><a href="{% url 'list_blogs_page' %}">Blogs</a></li>
                                     {% if user.is_authenticated %}
                                         <li>
                                             <a href="{% url 'create_post_page' %}">New Post</a>

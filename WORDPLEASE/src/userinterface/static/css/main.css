@@ -92,8 +92,21 @@ nav a:hover {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.blog-author_posttitle{
+    color: #c2c2c2;
+    font-weight: normal;
+}
+.blog-list_pill{
+    background-color:#efefef;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+.blog-list_pill a{
+    color: #212529;
+    text-decoration: none;
+}
 
-.post-list {
+.blog-list, .post-list {
     margin-top: 50px;
 }
 

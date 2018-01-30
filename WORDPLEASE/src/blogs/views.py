@@ -76,6 +76,6 @@ class CreatePostView(LoginRequiredMixin, View):
             form = PostForm()
             url = reverse("post_detail_page", args=[post.user, post.pk])
             message = "¡Post creado con éxito!"
-            message += '<a href={0}>View</a>'.format(url)
+            message += '<a href={0}> Ver post </a>'.format(url)
             messages.success(request, message)
         return render(request, "post_form.html", {'form': form})

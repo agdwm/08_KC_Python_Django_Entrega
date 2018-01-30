@@ -3,10 +3,19 @@
 {% block head_title %} WORDPLEASE: Blogs List {% endblock %}
 
 {% block content %}
-    {% for blog in blogs %}
-        <div>
-            <h3>{{ blog.blog_title }}</h3>
-            <p>{{ blog.user.username }}</p>
+    <h1>Listado de blogs</h1>
+    <section class="blog-list">
+        <div class="row">
+            {% for blog in blogs %}
+            <div class="col-sm-6">
+                <div class="blog-list_pill">
+                    <a href="{% url 'list_posts_page' blog.user.username %}">
+                        <h3>{{ blog.blog_title }}</h3>
+                        <p><strong>Author:</strong> {{ blog.user.username }}</p>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-    {% endfor %}
+    </section>
 {% endblock %}
