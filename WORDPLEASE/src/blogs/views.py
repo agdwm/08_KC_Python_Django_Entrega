@@ -35,7 +35,6 @@ class PostListByAuthorView(ListView):
         current_autor = self.kwargs.get('autor')
         return Post.objects.filter(blog__user__username=current_autor).order_by("-release_date")
 
-
 class PostDetailView(DetailView):
 
     model = Post
@@ -66,15 +65,15 @@ class CreatePostView(LoginRequiredMixin, View):
 
     def post(self, request):
         post = Post()
-        current_user = post.user
-        post.user = request.user #Asignamos al post el usuario autenticado
-        post.blog = Blog.objects.get(user=current_user) # Asignamos el post al blog del usuario autenticado
+
+        # Asignamos el post al blog del usuario autenticado
+        post.blog = Blog.objects.get(user=request.user)
         form = PostForm(request.POST, instance=post)
 
         if form.is_valid():
             post = form.save()
             form = PostForm()
-            url = reverse("post_detail_page", args=[post.user, post.pk])
+            url = reverse("post_detail_page", args=[request.user, post.pk])
             message = "¡Post creado con éxito!"
             message += '<a href={0}> Ver post </a>'.format(url)
             messages.success(request, message)

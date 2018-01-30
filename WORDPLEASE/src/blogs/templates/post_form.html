@@ -6,24 +6,23 @@
 
     <h1>Crear nuevo Post</h1>
 
-    {% if messages %}
-        {% for message in messages %}
-            {% autoescape off %}
-            <div class="alert alert-success">{{ message }}</div>
-            {% endautoescape %}
-        {% endfor %}
-    {% endif %}
-
-    <section class="create-post">
+     <section class="create-post">
         <div class="row">
             <div class="col-md-7 col-lg-6">
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-danger">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+
                 <form method="post" novalidate>
                     {% csrf_token %}
 
                     {{ form.as_p }}
 
                     <div class="login-form_submit">
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
                 </form>
             </div>
