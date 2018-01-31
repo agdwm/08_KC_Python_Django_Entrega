@@ -4,6 +4,8 @@ from django.utils.safestring import mark_safe
 from blogs.models import Category, Blog, Post
 
 admin.site.register(Category)
+admin.site.site_header = "WORDPLEASE Backoffice"
+admin.site.site_title = admin.site.site_header
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
@@ -55,6 +57,7 @@ class PostAdmin(admin.ModelAdmin):
             'description': 'This fields are auto-generated'
         })
     )
+
 
 
 @admin.register(Blog)
