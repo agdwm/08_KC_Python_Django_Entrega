@@ -53,13 +53,6 @@ class PostForm(ModelForm):
         label="Image",
         required=False
     )
-    release_date = forms.DateTimeField(
-        widget=forms.DateInput( format=('%d-%m-%Y'),
-                                attrs={'type':'date',
-                                'placeholder':'Select a date'}),
-    )
-
-
 
 
 class SignUpForm(UserCreationForm):
