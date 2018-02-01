@@ -63,9 +63,15 @@ class SignUpView(View):
             blogtitle = cd.get("blogtitle")
 
             possible_blogs = Blog.objects.filter(blog_title=blogtitle)
+            possible_email = User.objects.filter(email=email)
+
+            if len(possible_email) > 0:
+                form.add_error(None, 'This email is already in use')
+
             if len(possible_blogs) > 0:
                 form.add_error(None, 'This blog title is already in use')
-            else:
+
+            if len(possible_blogs) == 0 and len(possible_email) == 0:
                 new_user = User.objects.create_user(username, email, password1, first_name=first_name, last_name=last_name)
                 new_blog = Blog.objects.create(blog_title=blogtitle, user=new_user)
                 new_user.save()
