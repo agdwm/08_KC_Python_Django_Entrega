@@ -47,15 +47,6 @@ class PostDetailView(DetailView):
         return get_object_or_404(possible_posts)
 
 
-"""class CreateBlogView(LoginRequiredMixin, View):
-
-    def get(self, request):
-        pass
-
-    def post(self, request):
-        pass"""
-
-
 class CreatePostView(LoginRequiredMixin, View):
 
     def get(self, request):
