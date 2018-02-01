@@ -47,9 +47,6 @@ class SignUpView(View):
 
     def post(self, request):
 
-        blog = Blog()
-
-
         form = SignUpForm(request.POST)
 
         if form.is_valid():
@@ -80,7 +77,6 @@ class SignUpView(View):
                 message = "¡Usuario creado con éxito!"
                 messages.success(request, message)
                 return redirect('login_page')
-
 
         context = {'form': form}
         return render(request, "signup_form.html", context)

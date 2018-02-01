@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
+from django.utils.safestring import mark_safe
 from django.views import View
 from django.views.generic import ListView, DetailView
 
@@ -66,6 +67,9 @@ class CreatePostView(LoginRequiredMixin, View):
             form = PostForm()
             url = reverse("post_detail_page", args=[request.user, post.pk])
             message = "¡Post creado con éxito!"
-            message += '<a href={0}> Ver post </a>'.format(url)
+            message += mark_safe('<a href={0}> Ver post </a>'.format(url))
             messages.success(request, message)
+        else:
+            form.add_error(None, "El formulario no es válido")
+
         return render(request, "post_form.html", {'form': form})

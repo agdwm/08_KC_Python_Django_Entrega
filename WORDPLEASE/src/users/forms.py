@@ -29,7 +29,35 @@ class PostForm(ModelForm):
         fields = "__all__"
         exclude = ["blog"]
 
-        #release_date = forms.DateTimeField(widget=forms.SplitDateTimeWidget())
+    post_title = forms.CharField(
+        max_length=150,
+        widget=forms.TextInput(attrs={'class':'form-control'}),
+        label="Post title"
+    )
+    intro = forms.CharField(
+        max_length=400,
+        widget=forms.TextInput(attrs={'class':'form-control'}),
+        label="Intro"
+    )
+    content = forms.CharField(
+        widget=forms.Textarea(attrs={'class': 'form-control'}),
+        label="Content"
+    )
+    video = forms.URLField(
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        label="Video",
+        required=False
+    )
+    image = forms.URLField(
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        label="Image",
+        required=False
+    )
+    """release_date = forms.DateTimeField(
+        widget=forms.SplitDateTimeWidget()
+    )"""
+
+
 
 
 class SignUpForm(UserCreationForm):

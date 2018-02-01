@@ -42,7 +42,6 @@ class Post(TimeStampedModel):
     video = models.URLField(blank=True, null=True)
     image = models.URLField(blank=True, null=True)
     release_date = models.DateTimeField()
-    #release_date = models.SplitDateTimeField(initial=timezone.now)
 
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
     category = models.ManyToManyField(Category)
