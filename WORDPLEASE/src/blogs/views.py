@@ -69,7 +69,7 @@ class CreatePostView(LoginRequiredMixin, View):
             message = "¡Post creado con éxito!"
             message += mark_safe('<a href={0}> Ver post </a>'.format(url))
             messages.success(request, message)
-        else:
-            form.add_error(None, "El formulario no es válido")
+        #else:
+            #form.add_error(None, "El formulario no es válido")
 
         return render(request, "post_form.html", {'form': form})

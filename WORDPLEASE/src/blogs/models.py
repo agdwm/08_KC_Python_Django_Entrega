@@ -41,7 +41,7 @@ class Post(TimeStampedModel):
     content = models.TextField()
     video = models.URLField(blank=True, null=True)
     image = models.URLField(blank=True, null=True)
-    release_date = models.DateTimeField()
+    release_date = models.DateTimeField(auto_now_add=True)
 
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
     category = models.ManyToManyField(Category)

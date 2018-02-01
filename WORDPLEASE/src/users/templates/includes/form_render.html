@@ -6,18 +6,10 @@
     {% endfor %}
 {% endif %}
 
-{% for hidden_field in form.hidden_fields %}
-    {{ hidden_field.errors }}
-    {{ hidden_field }}
-{% endfor %}
 
 {% for field in form.visible_fields %}
     <div class="form-group">
         {{ field.label_tag }}
-        {{ field }}
-    </div>
-
-    {% if form.errors %}
         {% if field.errors %}
             {% for error in field.errors %}
                 {% autoescape off %}
@@ -25,5 +17,9 @@
                 {% endautoescape %}
             {% endfor %}
         {% endif %}
-    {% endif %}
+        {{ field }}
+        {% if field.help_text %}
+            {{ field.help_text }}
+        {% endif %}
+    </div>
 {% endfor %}
