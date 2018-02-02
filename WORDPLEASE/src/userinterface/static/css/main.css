@@ -114,6 +114,19 @@ nav a:hover {
     color: #ffffff;
     margin-bottom: 25px;
 }
+.post-card_frame {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+}
+.post-card_frame iframe, .post-card_frame img{
+    position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
 
 .post-card_title {
     padding: 15px;

@@ -1,4 +1,5 @@
 {% load static %}
+{% load embed_video_tags %}
 <section class="post-list">
     <div class="row">
         {% for post in posts %}
@@ -11,11 +12,10 @@
                             <div class="post-card_frame">
                                 <img src="{{ post.image }}" alt="{{ post.post_title }}" title="{{ post.post_title }}" class="img-fluid">
                             </div>
-
                             <figcaption>{{ post.intro }}</figcaption>
                         {% elif post.video %}
                             <div class="post-card_frame">
-                                <iframe src="{{ post.video }}" frameborder="1" allowfullscreen width="450" height="250"></iframe>
+                                {% video post.video '960x540' %}
                             </div>
                         {% else %}
                             <div class="post-card_frame">

@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'blogs',
     'users',
 
+    'embed_video'
+
 ]
 
 MIDDLEWARE = [

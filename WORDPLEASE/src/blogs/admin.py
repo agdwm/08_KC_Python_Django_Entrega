@@ -28,22 +28,18 @@ class PostAdmin(admin.ModelAdmin):
     author.admin_order_field = "blog__user"
 
 
-    def get_image_html(self, post):
-        return mark_safe('<img src="{0}" alt="{1}" height="100">'.format(post.image, post.post_title))
-    get_image_html.short_description = "Image"
-
     def get_blog_html(self, post):
         return mark_safe('<em>{0}</em>'.format(post.blog))
     get_blog_html.short_description = "Blog"
 
-    readonly_fields = ('get_blog_html', 'created_at', 'modified_at', 'get_image_html')
+    readonly_fields = ('get_blog_html', 'created_at', 'modified_at')
 
     fieldsets = (
         ("Post details",{
             'fields': ('post_title', 'intro', 'content')
         }),
         ("Media", {
-            'fields': ('video', 'get_image_html')
+            'fields': ('video', 'image')
         }),
         ("Realease date", {
             'fields': ('release_date',)
