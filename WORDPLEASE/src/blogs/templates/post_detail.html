@@ -9,11 +9,10 @@
         <div class="row">
             <div class="col-sm-12">
                 <h2 class="post-detail_title">{{ post.post_title }}</h2>
-
-                {% include "includes/render_media.html" with posts=object_list %}
-
+                <figure>
+                    {% include "includes/render_media.html" with posts=object_list %}
+                </figure>
                 <main>
-                    <h6 class="post-detail_intro">{{ post.intro }}</h6>
                     <p>{{ post.content }}</p>
                     <p><strong>Fecha y hora de publicación:</strong> {{ post.release_date | date:"d/m/Y H:i"}}</p>
 

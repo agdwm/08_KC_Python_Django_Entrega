@@ -166,6 +166,14 @@ figcaption {
     overflow: hidden;
     position: relative;
 }
+
+.post-detail figcaption{
+    height: auto;
+    padding: 20px 0 0 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
 .login-form{
     margin-top:50px;
 }
@@ -209,6 +217,9 @@ figcaption {
     }
     figcaption {
         height: 120px;
+    }
+    .post-detail figcaption{
+        height: auto;
     }
 }
 

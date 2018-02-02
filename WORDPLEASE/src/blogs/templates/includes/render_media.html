@@ -10,6 +10,7 @@
     <div class="post-card_frame">
         {% video post.video '960x540' %}
     </div>
+    <figcaption><p>{{ post.intro }}</p></figcaption>
 {% else %}
     <div class="post-card_frame">
         <img src="{% static 'images/img_default.png'%}" class="img-fluid">
