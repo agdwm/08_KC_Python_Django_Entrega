@@ -12,8 +12,13 @@ from users.forms import LoginForm, SignUpForm
 class LoginView(View):
 
     def get(self, request):
-        context = {'form': LoginForm()}
-        return render(request, "login_form.html", context)
+
+        if request.user.is_authenticated:
+            messages.info(request, 'You are already logged in.')
+            return render(request, "login_message.html")
+        else:
+            context = {'form': LoginForm()}
+            return render(request, "login_form.html", context)
 
     def post(self, request):
         form = LoginForm(request.POST)

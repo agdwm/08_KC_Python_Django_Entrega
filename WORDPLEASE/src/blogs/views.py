@@ -1,5 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
+from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.utils.safestring import mark_safe
@@ -34,6 +36,7 @@ class PostListByAuthorView(ListView):
 
     def get_queryset(self):
         current_autor = self.kwargs.get('autor')
+        get_object_or_404(User, username=current_autor)
         return Post.objects.filter(blog__user__username=current_autor).order_by("-release_date")
 
 class PostDetailView(DetailView):
