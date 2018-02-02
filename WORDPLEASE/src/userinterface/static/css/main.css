@@ -149,8 +149,8 @@ nav a:hover {
     margin-bottom: 10px;
 }
 
-.post-detail_frame{
-    max-width: 450px;
+.post-detail .post-card_frame{
+    max-width: 960px;
 }
 
 .post-detail_category li {
@@ -193,6 +193,12 @@ figcaption {
 .login-form_submit button:hover{
     background-color: #36B7D1;
 }
+
+.help-text {
+    color: #999;
+    font-size: 12px;
+}
+
 
 @media (min-width: 576px) {
     .logo p{

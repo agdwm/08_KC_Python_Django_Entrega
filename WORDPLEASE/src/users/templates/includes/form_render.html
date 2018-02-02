@@ -19,7 +19,9 @@
         {% endif %}
         {{ field }}
         {% if field.help_text %}
-            {{ field.help_text }}
+            <span class="help-text">
+                {{ field.help_text }}
+            </span>
         {% endif %}
     </div>
 {% endfor %}

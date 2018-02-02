@@ -10,11 +10,8 @@
             <div class="col-sm-12">
                 <h2 class="post-detail_title">{{ post.post_title }}</h2>
 
-                {% if post.image %}
-                    <div class="post-detail_frame">
-                        <img src="{{ post.image }}" alt="{{ post.post_title }}" title="{{ post.post_title }}">
-                    </div>
-                {% endif %}
+                {% include "includes/render_media.html" with posts=object_list %}
+
                 <main>
                     <h6 class="post-detail_intro">{{ post.intro }}</h6>
                     <p>{{ post.content }}</p>

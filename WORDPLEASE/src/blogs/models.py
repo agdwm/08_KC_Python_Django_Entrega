@@ -47,6 +47,3 @@ class Post(TimeStampedModel):
 
     def __str__(self):
         return self.post_title
-
-    def __unicode__(self):
-        return self.video

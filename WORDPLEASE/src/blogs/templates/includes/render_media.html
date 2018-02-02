@@ -1,0 +1,18 @@
+{% load static %}
+{% load embed_video_tags %}
+
+{% if post.image %}
+    <div class="post-card_frame">
+        <img src="{{ post.image }}" alt="{{ post.post_title }}" title="{{ post.post_title }}" class="img-fluid">
+    </div>
+    <figcaption>{{ post.intro }}</figcaption>
+{% elif post.video %}
+    <div class="post-card_frame">
+        {% video post.video '960x540' %}
+    </div>
+{% else %}
+    <div class="post-card_frame">
+        <img src="{% static 'images/img_default.png'%}" class="img-fluid">
+    </div>
+    <figcaption><p>{{ post.intro }}</p></figcaption>
+{% endif %}
