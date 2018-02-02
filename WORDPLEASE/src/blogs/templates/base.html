@@ -16,16 +16,17 @@
         <div class="wrap navbar-fixed-top">
             <div class="container">
                 <div class="row">
-                    <div class="col-5 col-sm-4 col-md-3">
+                    <div class="col-sm-4 col-md-3">
                         <div class="logo">
                             <div><p><a href="{% url 'home_page' %}">Wordplease</a></p></div>
                         </div>
                     </div>
-                    <div class="col-7 col-sm-8 col-md-9">
+                    <div class="col-sm-8 col-md-9">
                         <div class="row">
                             <nav>
                                 <ul>
                                     <li><a href="{% url 'home_page' %}">Home</a></li>
+
                                     <li><a href="{% url 'list_blogs_page' %}">Blogs</a></li>
                                     {% if user.is_authenticated %}
                                         <li>

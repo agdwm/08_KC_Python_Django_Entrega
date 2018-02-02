@@ -21,6 +21,7 @@ ul{
 nav{
     padding-left: 15px;
     padding-right: 15px;
+    margin: 0 auto;
 }
 
 nav li{
@@ -149,10 +150,16 @@ nav a:hover {
     margin-bottom: 10px;
 }
 
-.post-detail .post-card_frame{
+.post-detail .post-card_frame {
     max-width: 960px;
 }
-
+.post-detail .post-card_frame img{
+    position: absolute;
+	top: 0;
+	left: 0;
+	max-width: 100%;
+	height: auto;
+}
 .post-detail_category li {
     display: inline-block;
     background-color: #ededed;
