@@ -31,7 +31,7 @@ class LoginView(View):
                 redirect_to = request.GET.get("next", "home_page")
                 return redirect(redirect_to)
             else:
-                form.add_error(None, "Incorrect or inactive user")
+                messages.error(request, "Usuario incorrecto o inactivo")
         context = {'form': form}
         return render(request, "login_form.html", context)
 

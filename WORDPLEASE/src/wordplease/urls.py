@@ -16,7 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from blogs.api import BlogListAPI
 from blogs.views import LatestPostsView, BlogListView, PostListByAuthorView, PostDetailView, CreatePostView
+from users.api import UserListAPI
 from users.views import LoginView, LogoutView, SignUpView
 
 urlpatterns = [
@@ -26,12 +28,16 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name="logout_page"),
     path('singup/', SignUpView.as_view(), name="signup_page"),
 
-    #path('new-blog/', CreateBlogView.as_view(), name="create_blog_page"),
     path('new-post/', CreatePostView.as_view(), name="create_post_page"),
 
     path('blogs/<str:autor>/<int:pk>', PostDetailView.as_view(), name="post_detail_page"),
     path('blogs/<str:autor>/', PostListByAuthorView.as_view(), name="list_posts_page"),
     path('blogs/', BlogListView.as_view(), name="list_blogs_page"),
-    path('', LatestPostsView.as_view(), name="home_page")
+    path('', LatestPostsView.as_view(), name="home_page"),
+
+    # API REST
+    path('api/1.0/blogs/', BlogListAPI.as_view(), name="api_blogs_list"),
+    path('api/1.0/users/', UserListAPI.as_view(), name="api_users_list")
+
 ]
 
