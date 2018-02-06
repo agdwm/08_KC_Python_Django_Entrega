@@ -30,16 +30,16 @@ urlpatterns = [
 
     path('new-post/', CreatePostView.as_view(), name="create_post_page"),
 
-    path('blogs/<str:autor>/<int:pk>', PostDetailView.as_view(), name="post_detail_page"),
-    path('blogs/<str:autor>/', PostListByAuthorView.as_view(), name="list_posts_page"),
+    path('blogs/<str:author>/<int:pk>', PostDetailView.as_view(), name="post_detail_page"),
+    path('blogs/<str:author>/', PostListByAuthorView.as_view(), name="list_posts_page"),
     path('blogs/', BlogListView.as_view(), name="list_blogs_page"),
     path('', LatestPostsView.as_view(), name="home_page"),
 
     # API REST
-    path('api/1.0/blogs/', BlogListAPI.as_view(), name="api_blogs_list"),
     path('api/1.0/users/<int:pk>', UserDetailAPI.as_view(), name="api_user_detail"),
     path('api/1.0/users/', UserListAPI.as_view(), name="api_users_list"),
 
-
+    path('api/1.0/blogs/<str:author>/', PostListByAuthorView.as_view(), name="api_blogs_author"),
+    path('api/1.0/blogs/', BlogListAPI.as_view(), name="api_blogs_list")
 ]
 

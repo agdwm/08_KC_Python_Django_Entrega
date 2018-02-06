@@ -35,9 +35,9 @@ class PostListByAuthorView(ListView):
     context_object_name = "posts"
 
     def get_queryset(self):
-        current_autor = self.kwargs.get('autor')
-        get_object_or_404(User, username=current_autor)
-        return Post.objects.filter(blog__user__username=current_autor).order_by("-release_date")
+        current_author = self.kwargs.get('author')
+        get_object_or_404(User, username=current_author)
+        return Post.objects.filter(blog__user__username=current_author).order_by("-release_date")
 
 class PostDetailView(DetailView):
 
@@ -45,9 +45,9 @@ class PostDetailView(DetailView):
     template_name = "post_detail.html"
 
     def get_object(self):
-        current_autor = self.kwargs.get('autor')
+        current_author = self.kwargs.get('author')
         current_pk = self.kwargs.get("pk")
-        possible_posts = Post.objects.filter(blog__user__username=current_autor, pk=current_pk).prefetch_related("category")
+        possible_posts = Post.objects.filter(blog__user__username=current_author, pk=current_pk).prefetch_related("category")
         return get_object_or_404(possible_posts)
 
 
