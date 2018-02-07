@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import status
-from rest_framework.generics import ListAPIView, get_object_or_404, ListCreateAPIView
+from rest_framework.generics import ListAPIView, get_object_or_404, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -26,8 +26,13 @@ class PostListByAuthorAPI(ListCreateAPIView):
         get_object_or_404(User, username=author)
         return Post.objects.filter(blog__user__username=author).order_by("-release_date")
 
-
     def perform_create(self, serializer):
         current_blog = Blog.objects.get(user=self.request.user)
         serializer.save(blog=current_blog)
+
+
+class PostDetailAPI(RetrieveUpdateDestroyAPIView):
+
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
 
