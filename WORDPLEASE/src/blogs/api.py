@@ -9,11 +9,9 @@ from blogs.serializers import BlogSerializer, PostSerializer
 
 
 class BlogListAPI(ListAPIView):
-    
-    def get(self, request):
-        blogs = Blog.objects.all()
-        serializer = BlogSerializer(blogs, many=True)
-        return Response(serializer.data)
+
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
 
 
 class PostListByAuthorAPI(ListCreateAPIView):
