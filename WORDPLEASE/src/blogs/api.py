@@ -1,11 +1,8 @@
 from django.contrib.auth.models import User
-from rest_framework import status
 from rest_framework.generics import ListAPIView, get_object_or_404, ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.response import Response
-from rest_framework.views import APIView
 
 from blogs.models import Blog, Post
-from blogs.serializers import BlogSerializer, PostSerializer
+from blogs.serializers import BlogSerializer, PostSerializer, PostListSerializer
 
 
 class BlogListAPI(ListAPIView):
@@ -14,10 +11,12 @@ class BlogListAPI(ListAPIView):
     serializer_class = BlogSerializer
 
 
-class PostListByAuthorAPI(ListCreateAPIView):
+class PostListAPI(ListCreateAPIView):
 
     queryset = Post.objects.all()
-    serializer_class = PostSerializer
+
+    def get_serializer_class(self):
+        return PostListSerializer if self.request.method == "GET" else PostSerializer
 
     def get_queryset(self):
         author = self.kwargs.get('author')
