@@ -33,6 +33,9 @@ class UserListAPI(APIView):
 class UserDetailAPI(APIView):
     #RETRIEVEUPDATEDESTROYAPIVIEW
 
+    #chequear autorización a nivel de objeto
+    #self.check_object_permissions(request, obj)
+
     #detalle
     def get(self, request, pk):
         user = get_object_or_404(User, pk=pk)
@@ -54,3 +57,4 @@ class UserDetailAPI(APIView):
         user = get_object_or_404(User, pk=pk)
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+

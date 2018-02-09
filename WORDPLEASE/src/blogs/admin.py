@@ -27,12 +27,7 @@ class PostAdmin(admin.ModelAdmin):
     author.short_description = "Post author"
     author.admin_order_field = "blog__user"
 
-
-    def get_blog_html(self, post):
-        return mark_safe('<em>{0}</em>'.format(post.blog))
-    get_blog_html.short_description = "Blog"
-
-    readonly_fields = ('get_blog_html', 'created_at', 'modified_at')
+    readonly_fields = ('created_at', 'modified_at')
 
     fieldsets = (
         ("Post details",{
@@ -45,7 +40,7 @@ class PostAdmin(admin.ModelAdmin):
             'fields': ('release_date',)
         }),
         ("Additional info",{
-            'fields': ('get_blog_html', 'category')
+            'fields': ('blog', 'category')
         }),
         ("Creation & Modification", {
             'fields': ('created_at', 'modified_at'),
@@ -62,8 +57,6 @@ class BlogAdmin(admin.ModelAdmin):
     list_display = ('blog_title', 'user', 'user_full_name')
     list_filter = ('user',)
     search_fields = ('blog_title', 'description', 'user__username')
-
-    readonly_fields = ('user',)
 
     def user_full_name(self, blog):
         return "{0} {1}".format(blog.user.first_name, blog.user.last_name)

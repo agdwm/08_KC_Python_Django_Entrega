@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
@@ -53,26 +54,36 @@ class PostDetailView(DetailView):
 
 class CreatePostView(LoginRequiredMixin, View):
 
+
     def get(self, request):
         form = PostForm()
+        try:
+            Blog.objects.get(user=request.user)
+        except ObjectDoesNotExist:
+            messages.add_message(request, messages.ERROR, "Este usuario no dispone de un blog asociado. Consulte con el administrador")
+
         return render(request, "post_form.html", {'form': form})
 
 
     def post(self, request):
         post = Post()
-
-        # Asignamos el post al blog del usuario autenticado
-        post.blog = Blog.objects.get(user=request.user)
         form = PostForm(request.POST, instance=post)
 
-        if form.is_valid():
-            post = form.save()
+        try:
+            author_blog = Blog.objects.get(user=request.user)
+            # Asignamos el post al blog del usuario autenticado
+            post.blog = author_blog
+
+            if form.is_valid():
+                post = form.save()
+                form = PostForm()
+                url = reverse("post_detail_page", args=[request.user, post.pk])
+                message = "¡Post creado con éxito!"
+                message += mark_safe('<a href={0}> Ver post </a>'.format(url))
+                messages.success(request, message)
+
+        except ObjectDoesNotExist:
+            messages.add_message(request, messages.ERROR, "Este usuario no dispone de un blog asociado. Consulte con el administrador")
             form = PostForm()
-            url = reverse("post_detail_page", args=[request.user, post.pk])
-            message = "¡Post creado con éxito!"
-            message += mark_safe('<a href={0}> Ver post </a>'.format(url))
-            messages.success(request, message)
-        #else:
-            #form.add_error(None, "El formulario no es válido")
 
         return render(request, "post_form.html", {'form': form})
