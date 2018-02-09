@@ -4,6 +4,7 @@ from rest_framework.generics import ListAPIView, get_object_or_404, ListCreateAP
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from blogs.models import Blog, Post
+from blogs.permissions import PostsPermission
 from blogs.serializers import BlogSerializer, PostSerializer, PostListSerializer
 
 
@@ -43,6 +44,7 @@ class PostDetailAPI(RetrieveUpdateDestroyAPIView):
 
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    permission_classes = [PostsPermission]
 
     def perform_update(self, serializer):
         current_blog = Blog.objects.get(user=self.request.user)

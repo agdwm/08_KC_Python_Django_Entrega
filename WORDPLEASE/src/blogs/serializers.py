@@ -26,7 +26,8 @@ class PostListSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
 
+    blog = BlogSerializer(read_only=True)
+
     class Meta:
         model = Post
         fields = "__all__"
-        read_only_fields = ('created_at', 'modified_at', 'blog')
