@@ -5,11 +5,13 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from blogs.models import User
+from users.permissions import UsersPermission
 from users.serializers import UserSerializer, UserListSerializer
 
 
 class UserListAPI(APIView):
     #LISTCREATEAPIVIEW
+    permission_classes = [UsersPermission]
 
     #listado
     def get(self, request):
@@ -32,19 +34,19 @@ class UserListAPI(APIView):
 
 class UserDetailAPI(APIView):
     #RETRIEVEUPDATEDESTROYAPIVIEW
-
-    #chequear autorización a nivel de objeto
-    #self.check_object_permissions(request, obj)
+    permission_classes = [UsersPermission]
 
     #detalle
     def get(self, request, pk):
         user = get_object_or_404(User, pk=pk)
+        self.check_object_permissions(request, user)
         serializer = UserSerializer(user)
         return Response(serializer.data)
 
     #actualizacion
     def put(self, request, pk):
         user = get_object_or_404(User, pk=pk)
+        self.check_object_permissions(request, user)
         serializer = UserSerializer(user, data=request.data)
         if serializer.is_valid():
             user = serializer.save()
@@ -55,6 +57,7 @@ class UserDetailAPI(APIView):
     #borrado
     def delete(self, request, pk):
         user = get_object_or_404(User, pk=pk)
+        self.check_object_permissions(request, user)
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 

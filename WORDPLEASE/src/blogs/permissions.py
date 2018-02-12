@@ -12,7 +12,7 @@ class PostsPermission(BasePermission):
 
     #permission
     def has_object_permission(self, request, view, obj):
-        permission = False
+        """permission = False
 
         if request.method == "GET":
             if obj.release_date <= timezone.now():
@@ -22,5 +22,11 @@ class PostsPermission(BasePermission):
                     permission = True
         elif obj.blog.user == request.user or request.user.is_superuser:
             permission = True
-        return permission
+        return permission"""
+
+        if request.method == "GET":
+            if obj.release_date <= timezone.now():
+                return True
+            return obj.blog.user == request.user or request.user.is_superuser
+        return obj.blog.user == request.user or request.user.is_superuser
 
