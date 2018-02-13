@@ -4,7 +4,7 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from blogs.models import User
+from blogs.models import User, Blog
 from users.permissions import UsersPermission
 from users.serializers import UserSerializer, UserListSerializer
 

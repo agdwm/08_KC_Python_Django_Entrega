@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
+from blogs.models import Blog
 from blogs.serializers import BlogSerializer
 
 
@@ -11,9 +12,18 @@ class UserListSerializer(serializers.Serializer):
     username = serializers.CharField()
     email = serializers.EmailField()
 
+
+class UserSerializer(UserListSerializer):
+
+    first_name = serializers.CharField()
+    last_name = serializers.CharField()
+    password = serializers.CharField()
+    #blog_title = serializers.PrimaryKeyRelatedField(read_only=True)
+
     def validate(self, data):
         username = data.get('username')
         email = data.get('email')
+        blog_title = data.get('blog_title')
 
         # Create user
         if self.instance is None:
@@ -28,28 +38,24 @@ class UserListSerializer(serializers.Serializer):
                 raise ValidationError("Wanted username is already in use")
             if self.instance.email != email and User.objects.filter(email=email).exists():
                 raise ValidationError("Wanted email is already in use")
-
         return data
 
 
-class UserSerializer(UserListSerializer):
-
-    first_name = serializers.CharField()
-    last_name = serializers.CharField()
-    password = serializers.CharField()
-
     def create(self, validated_data):
-
         instance = User()
         return self.update(instance, validated_data)
 
-
     def update(self, instance, validated_data):
-
+        blog = Blog()
         instance.first_name = validated_data.get("first_name")
         instance.last_name = validated_data.get("last_name")
         instance.username = validated_data.get("username")
         instance.email = validated_data.get("email")
         instance.set_password(validated_data.get("password"))
         instance.save()
+
+        blog.blog_title = self.initial_data.get('blog_title')
+        blog.user = instance
+        blog.save()
+
         return instance
