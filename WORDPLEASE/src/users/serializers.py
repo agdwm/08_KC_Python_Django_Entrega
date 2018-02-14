@@ -7,9 +7,14 @@ from blogs.models import Blog
 
 class UserListSerializer(serializers.Serializer):
 
+
     id = serializers.ReadOnlyField()
     username = serializers.CharField()
     email = serializers.EmailField()
+    blog_title = serializers.SerializerMethodField()
+
+    def get_blog_title(self, obj):
+        return obj.blog_set.values_list('blog_title', flat=True)[0]
 
 
 class UserSerializer(UserListSerializer):
@@ -21,7 +26,6 @@ class UserSerializer(UserListSerializer):
     def validate(self, data):
         username = data.get('username')
         email = data.get('email')
-        #blog_title = data.get('blog_title')
         blog_title = self.initial_data.get('blog_title')
 
         # Create user
