@@ -1,9 +1,7 @@
 from django.contrib import admin
-from django.utils.safestring import mark_safe
 
 from blogs.models import Category, Blog, Post
 
-admin.site.register(Category)
 admin.site.site_header = "WORDPLEASE Backoffice"
 admin.site.site_title = admin.site.site_header
 
@@ -64,3 +62,9 @@ class BlogAdmin(admin.ModelAdmin):
     user_full_name.short_description = "Blog author"
     user_full_name.admin_order_field = "user__first_name"
 
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name','description')
+    search_fields = ('name',)
