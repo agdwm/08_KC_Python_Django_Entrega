@@ -14,7 +14,7 @@ class UserListSerializer(serializers.Serializer):
     blog_title = serializers.SerializerMethodField()
 
     def get_blog_title(self, obj):
-        return obj.blog_set.values_list('blog_title', flat=True)[0]
+        return obj.blog_set.values_list('blog_title', flat=True).first()
 
 
 class UserSerializer(UserListSerializer):
