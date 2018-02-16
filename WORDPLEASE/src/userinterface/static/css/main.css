@@ -93,15 +93,18 @@ nav a:hover {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .blog-author_posttitle{
     color: #c2c2c2;
     font-weight: normal;
 }
+
 .blog-list_pill{
     background-color:#efefef;
     padding: 15px;
     margin-bottom: 20px;
 }
+
 .blog-list_pill a{
     color: #212529;
     text-decoration: none;
@@ -111,10 +114,25 @@ nav a:hover {
     margin-top: 50px;
 }
 
+.post_pagination{
+    position: relative;
+    height: 35px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.post_pagination ul{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .post-card {
     color: #ffffff;
     margin-bottom: 25px;
 }
+
 .post-card_frame {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */

@@ -2,7 +2,6 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.utils.safestring import mark_safe
@@ -17,9 +16,9 @@ class LatestPostsView(ListView):
 
     model = Post
     template_name = "home.html"
-
-    def get_queryset(self):
-        return Post.objects.all().order_by("-release_date")
+    context_object_name = 'posts'
+    paginate_by = 8
+    queryset = Post.objects.all().order_by("-release_date")
 
 
 class BlogListView(ListView):
@@ -34,6 +33,7 @@ class PostListByAuthorView(ListView):
     model = Post
     template_name = "blog_author.html"
     context_object_name = "posts"
+    paginate_by = 8
 
     def get_queryset(self):
         current_author = self.kwargs.get('author')
