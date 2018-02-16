@@ -8,7 +8,7 @@ admin.site.site_title = admin.site.site_header
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
 
-    list_display = ('post_title', 'video', 'image', 'release_date', 'blog', 'categories', 'author')
+    list_display = ('post_title', 'video', 'image', 'release_date', 'blog', 'intro', 'categories', 'author')
     list_filter = ('category', 'blog', 'release_date')
     search_fields = ('post_title', 'intro', 'content', 'blog__user__username')
 

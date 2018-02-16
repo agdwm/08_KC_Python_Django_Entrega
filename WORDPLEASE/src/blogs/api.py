@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.utils import timezone
+from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.generics import ListAPIView, get_object_or_404, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
@@ -12,12 +13,18 @@ class BlogListAPI(ListAPIView):
 
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ["user__username"]
+    ordering_fields = ["blog_title"]
 
 
 class PostListAPI(ListCreateAPIView):
 
     queryset = Post.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ["post_title", "intro"]
+    ordering_fields = ["post_title", "release_date"]
 
     def get_serializer_class(self):
         return PostListSerializer if self.request.method == "GET" else PostSerializer
@@ -28,9 +35,7 @@ class PostListAPI(ListCreateAPIView):
         query = Post.objects.filter(blog__user__username=author).order_by("-release_date")
         current_user = self.request.user
 
-        if not current_user.is_authenticated:
-            return query.filter(release_date__lte=timezone.now())
-        elif current_user.is_authenticated and current_user.username==author or current_user.is_superuser:
+        if current_user.is_authenticated and current_user.username==author or current_user.is_superuser:
             return query
         else:
             return query.filter(release_date__lte=timezone.now())

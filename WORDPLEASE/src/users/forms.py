@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 
 
-from blogs.models import Post, Blog
+from blogs.models import Post
 
 
 class LoginForm(forms.Form):

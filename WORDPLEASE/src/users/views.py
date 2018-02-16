@@ -3,7 +3,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import CreateView
 
 from blogs.models import Blog
 from users.forms import LoginForm, SignUpForm
