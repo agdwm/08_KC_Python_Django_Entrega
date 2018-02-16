@@ -7,9 +7,7 @@
                 <a href="{% url 'post_detail_page' post.blog.user post.pk %}" title="">
                     <figure>
                         <h6 class="post-card_title truncated-text">{{ post.post_title }}</h6>
-
                         {% include "includes/render_media.html" with posts=object_list %}
-
                     </figure>
                 </a>
             </div>
