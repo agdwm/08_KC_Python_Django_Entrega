@@ -157,7 +157,9 @@ nav a:hover {
     color: #333;
     text-decoration: none;
 }
-
+.post-detail{
+    margin-bottom: 50px;
+}
 .post-detail_title {
     margin-top: 10px;
     margin-bottom: 20px;
@@ -170,11 +172,12 @@ nav a:hover {
 
 .post-detail .post-card_frame {
     max-width: 960px;
+    padding-bottom: 0;
+    padding-top: 0;
+    height: auto;
 }
 .post-detail .post-card_frame img{
-    position: absolute;
-	top: 0;
-	left: 0;
+    position: static;
 	max-width: 100%;
 	height: auto;
 }
