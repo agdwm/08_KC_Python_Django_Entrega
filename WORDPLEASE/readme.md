@@ -10,7 +10,7 @@
 5. Create a superuser: `python manage.py createsuperuser`   
 6. Run development server with `python manage.py runserver`
 
-***NOTES*** :
+** ***NOTES*** :
 
 This application uses the following extra dependencies:  
 
