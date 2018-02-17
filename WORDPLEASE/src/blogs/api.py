@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.generics import ListAPIView, get_object_or_404, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -22,8 +23,9 @@ class PostListAPI(ListCreateAPIView):
 
     queryset = Post.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
-    filter_backends = [SearchFilter, OrderingFilter]
+    filter_backends = [SearchFilter, OrderingFilter, DjangoFilterBackend]
     search_fields = ["post_title", "intro"]
+    filter_fields = ["post_title", "intro"]
     ordering_fields = ["post_title", "release_date"]
 
     def get_serializer_class(self):

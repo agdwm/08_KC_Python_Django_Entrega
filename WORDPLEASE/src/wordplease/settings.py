@@ -44,8 +44,8 @@ INSTALLED_APPS = [
     'users',
 
     'embed_video',
-    'rest_framework'
-
+    'rest_framework',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
