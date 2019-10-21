@@ -4,7 +4,7 @@ decorator==4.2.1
 Django==2.0.1
 django-embed-video==1.1.2
 django-filter==1.1.0
-djangorestframework==3.7.7
+djangorestframework==3.9.1
 idna==2.6
 public==0.0.63
 pytz==2017.3
